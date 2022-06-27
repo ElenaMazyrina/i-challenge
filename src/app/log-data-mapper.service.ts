@@ -14,7 +14,7 @@ export class LogDataMapperService {
             }).sort((a, b) => {
                 return +(b.timeStamp) - +(a.timeStamp);
             }).reduce((acc, item) => {
-                const index = acc.findIndex((v) => v.date === item.timestamp);
+                const index = acc.findIndex((v) => v.date === item.timestamp.toLocaleDateString('de-DE'));
 
                 if (index !== -1) {
                     acc[index].data = [
@@ -23,7 +23,7 @@ export class LogDataMapperService {
                     ];
                 } else {
                     acc.push({
-                        date: item.timestamp,
+                        date: item.timestamp.toLocaleDateString('de-DE'),
                         data: [item],
                     });
                 }

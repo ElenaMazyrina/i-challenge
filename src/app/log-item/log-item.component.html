@@ -1,0 +1,10 @@
+<h3 class="app-log-item-title">
+    <span>{{ item.date | date : 'M.d.yyyy, EE.' }}</span>
+    <span *ngIf="titlePostfix">&nbsp;{{ titlePostfix }}</span>:
+</h3>
+<ng-container *ngIf="hasData; else noDataTemplate">
+    <app-log-item-data-table [data]="item.data"></app-log-item-data-table>
+</ng-container>
+<ng-template #noDataTemplate>
+    <span class="app-log-item-title__no-data">No events logged</span>
+</ng-template>

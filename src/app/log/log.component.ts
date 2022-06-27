@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { DataService } from '../data.service';
 import { LogDataMapperService } from '../log-data-mapper.service';
-import { ILogDataMapped } from '../interfaces/i-log-data-mapped';
+import { ILog } from '../interfaces/i-log';
 
 @Component({
     selector: 'app-log',
@@ -14,7 +14,7 @@ import { ILogDataMapped } from '../interfaces/i-log-data-mapped';
 export class LogComponent implements OnInit, OnDestroy {
     public isDataReady = false;
     public searchControl: FormControl;
-    public data: ILogDataMapped[];
+    public data: ILog[];
     public filterControl: FormControl;
     private destroy$ = new Subject<void>();
 
@@ -35,8 +35,7 @@ export class LogComponent implements OnInit, OnDestroy {
     }
 
     private async getData(): Promise<void> {
-        this.data = this.mapper.mapData(await this.dataService.getData());
-        console.log(this.data);
+        this.data = await this.dataService.getData();
 
         this.isDataReady = true;
         this.initializeControls();

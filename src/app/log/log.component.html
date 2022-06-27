@@ -1,5 +1,5 @@
 <ng-container *ngIf="isDataReady; else loadingTemplate">
-    Testing components...
+    <app-log-item class="app-log__item" *ngFor="let item of data" [item]="item"></app-log-item>
 </ng-container>
 <ng-template #loadingTemplate>
     <app-loader class="app-log-loader"></app-loader>

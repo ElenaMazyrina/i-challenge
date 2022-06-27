@@ -1,6 +1,6 @@
 import { ILogData } from './i-log-data';
 
 export interface ILogDataMapped {
-    date: Date;
+    date: string;
     data: ILogData[];
 }
