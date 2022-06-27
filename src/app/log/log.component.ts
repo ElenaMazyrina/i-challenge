@@ -1,17 +1,54 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormControl } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { debounceTime, takeUntil } from 'rxjs/operators';
+import { DataService } from '../data.service';
+import { LogDataMapperService } from '../log-data-mapper.service';
+import { ILogDataMapped } from '../interfaces/i-log-data-mapped';
 
 @Component({
     selector: 'app-log',
     templateUrl: './log.component.html',
     styleUrls: ['./log.component.scss']
 })
-export class LogComponent implements OnInit {
+export class LogComponent implements OnInit, OnDestroy {
     public isDataReady = false;
+    public searchControl: FormControl;
+    public data: ILogDataMapped[];
+    public filterControl: FormControl;
+    private destroy$ = new Subject<void>();
 
-    constructor() {
+    constructor(
+        private readonly fb: FormBuilder,
+        private readonly dataService: DataService,
+        private readonly mapper: LogDataMapperService,
+    ) {
     }
 
-    ngOnInit(): void {
+    public ngOnInit(): void {
+        this.getData();
     }
 
+    public ngOnDestroy(): void {
+        this.destroy$.next();
+        this.destroy$.complete();
+    }
+
+    private async getData(): Promise<void> {
+        this.data = this.mapper.mapData(await this.dataService.getData());
+        console.log(this.data);
+
+        this.isDataReady = true;
+        this.initializeControls();
+    }
+
+    private initializeControls(): void {
+        this.searchControl = this.fb.control(null);
+        this.filterControl = this.fb.control('la');
+
+        this.searchControl.valueChanges.pipe(
+            debounceTime(300),
+            takeUntil(this.destroy$),
+        ).subscribe((v) => console.log(v));
+    }
 }
