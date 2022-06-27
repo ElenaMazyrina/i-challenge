@@ -7,9 +7,12 @@
 .mat-table {
     background-color: transparent;
 }
+.mat-row {
+    height: 30px;
+}
 
 .mat-row .mat-cell {
-    padding: 2px 5px;
+    padding: 0 5px;
     border-bottom: 1px solid transparent;
     border-top: 1px solid transparent;
     cursor: pointer;

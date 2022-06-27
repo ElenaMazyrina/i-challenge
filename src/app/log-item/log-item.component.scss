@@ -7,7 +7,9 @@
 
 .app-log-item {
     &__title {
-
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 12px;
     }
 
     &__no-data {
@@ -15,8 +17,3 @@
     }
 }
 
-.app-log-item-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 12px;
-}

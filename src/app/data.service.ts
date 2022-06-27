@@ -32,9 +32,9 @@ export class DataService {
                     {
                         timeStamp: '2022-06-27T14:28:48+00:00',
                         title: 'Door - front',
-                        description: 'Closed by you',
+                        description: 'Opened by you',
                         type: LogEntityType.Door,
-                        state: DoorState.Closed,
+                        state: DoorState.Opened,
                     },
                     {
                         timeStamp: '2022-06-25T20:25:48+00:00',
@@ -47,13 +47,14 @@ export class DataService {
                         timeStamp: '2022-06-25T10:25:48+00:00',
                         title: 'Temperature',
                         description: 'below 4°C (3°C)',
-                        type: LogEntityType.Door,
+                        type: LogEntityType.Temperature,
                     },
                     {
                         timeStamp: '2022-06-25T09:25:48+00:00',
-                        title: 'Temperature',
-                        description: 'below 4°C (3°C)',
-                        type: LogEntityType.Door,
+                        title: 'Main lighting',
+                        description: 'Off',
+                        type: LogEntityType.Lighting,
+                        state: LightingState.Off,
                     }
                 ],
             },

@@ -10,6 +10,8 @@ import { LogDataMapperService } from './log-data-mapper.service';
 import { LogItemComponent } from './log-item/log-item.component';
 import { LogItemDataTableComponent } from './log-item-data-table/log-item-data-table.component';
 import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+import { LogItemIconComponent } from './log-item-icon/log-item-icon.component';
 
 @NgModule({
     declarations: [
@@ -18,12 +20,14 @@ import { MatTableModule } from '@angular/material/table';
         LogComponent,
         LogItemComponent,
         LogItemDataTableComponent,
+        LogItemIconComponent,
     ],
     imports: [
         BrowserModule,
         NoopAnimationsModule,
         ReactiveFormsModule,
         MatTableModule,
+        MatIconModule,
     ],
     providers: [
         DataService,

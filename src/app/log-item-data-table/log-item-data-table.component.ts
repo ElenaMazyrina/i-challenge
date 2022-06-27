@@ -8,7 +8,7 @@ import { ILogData } from '../interfaces/i-log-data';
 })
 export class LogItemDataTableComponent implements OnInit {
     @Input() data: ILogData[];
-    public displayedColumns: string[] = ['timeStamp', 'title'];
+    public displayedColumns: string[] = ['timeStamp', 'icon', 'title', 'description'];
 
     constructor() {
     }
