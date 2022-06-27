@@ -1,5 +1,5 @@
 <h3 class="app-log-item__title">
-    <span>{{ item.date | date : 'M.d.yyyy, EE.' }}</span>
+    <span>{{ item.date | date : 'd.MM.yyyy, EE.' }}</span>
     <span *ngIf="titlePostfix">&nbsp;{{ titlePostfix }}</span>:
 </h3>
 <ng-container *ngIf="hasData; else noDataTemplate">
