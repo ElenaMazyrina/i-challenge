@@ -1,0 +1,17 @@
+
+
+:host {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.app-log {
+
+    &__loader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
