@@ -23,11 +23,11 @@ export class LogItemIconComponent {
         }
 
         if (this.data.type === LogEntityType.Lighting && this.data.state === LightingState.Off) {
-            return LogIcons.Lightbulb;
+            return LogIcons.LightBulb;
         }
 
         if (this.data.type === LogEntityType.Lighting && this.data.state === LightingState.On) {
-            return LogIcons.LightbulbOutline;
+            return LogIcons.LightBulbOutline;
         }
 
         if (this.data.type === LogEntityType.Temperature) {

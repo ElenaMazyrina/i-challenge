@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ILogData } from '../interfaces/i-log-data';
 
 @Component({
@@ -6,13 +6,7 @@ import { ILogData } from '../interfaces/i-log-data';
     templateUrl: './log-item-data-table.component.html',
     styleUrls: ['./log-item-data-table.component.scss']
 })
-export class LogItemDataTableComponent implements OnInit {
+export class LogItemDataTableComponent {
     @Input() data: ILogData[];
     public displayedColumns: string[] = ['timeStamp', 'icon', 'title', 'description'];
-
-    constructor() {
-    }
-
-    ngOnInit(): void {
-    }
 }

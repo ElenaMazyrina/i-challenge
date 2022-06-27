@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { isToday } from '../helpers/is-today-helper';
 import { isYesterday } from '../helpers/is-yesterday-helper';
 import { ILog } from '../interfaces/i-log';
@@ -10,9 +10,6 @@ import { ILog } from '../interfaces/i-log';
 })
 export class LogItemComponent {
     @Input() item: ILog;
-
-    constructor() {
-    }
 
     public get titlePostfix(): string | null {
         if (isToday(new Date(this.item.date))) {

@@ -35,7 +35,6 @@ export class LogComponent implements OnInit, OnDestroy {
     private async getData(): Promise<void> {
         this.data = await this.dataService.getData();
         this.filteredData = this.data;
-
         this.isDataReady = true;
         this.initializeControls();
     }
