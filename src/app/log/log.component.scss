@@ -1,12 +1,18 @@
+@import '../../assets/styles';
+
 :host {
     display: flex;
     flex-direction: column;
-    align-items: center;
     height: 100%;
     padding: 60px 40px 20px;
 }
 
 .app-log {
+
+    &__search {
+        margin-bottom: 12px;
+    }
+
     &__loader {
         display: flex;
         justify-content: center;

@@ -1,9 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { debounceTime, takeUntil } from 'rxjs/operators';
+import { debounceTime, map, takeUntil } from 'rxjs/operators';
 import { DataService } from '../data.service';
-import { LogDataMapperService } from '../log-data-mapper.service';
 import { ILog } from '../interfaces/i-log';
 
 @Component({
@@ -15,13 +14,12 @@ export class LogComponent implements OnInit, OnDestroy {
     public isDataReady = false;
     public searchControl: FormControl;
     public data: ILog[];
-    public filterControl: FormControl;
+    public filteredData: ILog[];
     private destroy$ = new Subject<void>();
 
     constructor(
         private readonly fb: FormBuilder,
         private readonly dataService: DataService,
-        private readonly mapper: LogDataMapperService,
     ) {
     }
 
@@ -36,6 +34,7 @@ export class LogComponent implements OnInit, OnDestroy {
 
     private async getData(): Promise<void> {
         this.data = await this.dataService.getData();
+        this.filteredData = this.data;
 
         this.isDataReady = true;
         this.initializeControls();
@@ -43,11 +42,25 @@ export class LogComponent implements OnInit, OnDestroy {
 
     private initializeControls(): void {
         this.searchControl = this.fb.control(null);
-        this.filterControl = this.fb.control('la');
 
         this.searchControl.valueChanges.pipe(
             debounceTime(300),
+            map((v) => v.toLowerCase()),
             takeUntil(this.destroy$),
-        ).subscribe((v) => console.log(v));
+        ).subscribe((searchString) => {
+            if (!searchString) {
+                this.filteredData = this.data;
+            }
+
+            this.filteredData = this.filteredData.map((v) => {
+                return {
+                    ...v,
+                    data: v.data.filter((item) => {
+                        return item.title.toLowerCase().startsWith(searchString) ||
+                            item.description.toLowerCase().startsWith(searchString);
+                    })
+                };
+            });
+        });
     }
 }

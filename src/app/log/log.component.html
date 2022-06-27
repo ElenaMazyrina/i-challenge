@@ -1,6 +1,11 @@
 <ng-container *ngIf="isDataReady; else loadingTemplate">
-    <app-log-item class="app-log__item" *ngFor="let item of data" [item]="item"></app-log-item>
+    <mat-form-field appearance="fill" class="app-log__search">
+        <mat-label>Search ...</mat-label>
+        <input type="text" matInput [formControl]="searchControl">
+        <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    <app-log-item class="app-log__item" *ngFor="let item of filteredData" [item]="item"></app-log-item>
 </ng-container>
 <ng-template #loadingTemplate>
-    <app-loader class="app-log-loader"></app-loader>
+    <app-loader class="app-log__loader"></app-loader>
 </ng-template>
